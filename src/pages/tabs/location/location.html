@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Location</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <google-map [mapCoords]="coords" *ngIf="coords" ></google-map>
+</ion-content>
