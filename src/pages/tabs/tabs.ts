@@ -9,6 +9,7 @@ export class TabsPage {
 
   tab1Root = 'LocationPage';
   tab2Root = 'WatchPage';
+  tab3Root = 'CameraPage';
 
   constructor() {
 

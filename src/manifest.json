@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "Ionic Geolocation",
+  "short_name": "Ionic Geolocation",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

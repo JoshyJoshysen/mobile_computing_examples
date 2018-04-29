@@ -6,5 +6,20 @@
 
 
 <ion-content padding>
-  <google-map [mapCoords]="coords" *ngIf="coords" ></google-map>
+  <button ion-button block (click)="showPostion()" >Show Current Position</button>
+  <ion-list>
+    <ng-container *ngIf="coords">
+      <ion-item>
+        <google-map [mapCoords]="coords" [mapMarkers]="markers" *ngIf="coords" ></google-map>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Latitude</ion-label>
+        <ion-input type="text" [disabled]="true" [(ngModel)]="coords.lat"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Longitude</ion-label>
+        <ion-input type="text" [disabled]="true" [(ngModel)]="coords.lng"></ion-input>
+      </ion-item>
+    </ng-container>
+  </ion-list>
 </ion-content>
