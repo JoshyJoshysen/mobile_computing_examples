@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Camera</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Select Device: </ion-label>
+    <ion-select [(ngModel)]="selectedDevice" (ionChange)="onChoseDevice($event)">
+      <ion-option *ngFor="let dev of deviceList" [value]="dev">{{dev.label}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <video #videoElement></video>
+</ion-content>
