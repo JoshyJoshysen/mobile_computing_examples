@@ -12,7 +12,6 @@ export class CameraPage {
   video: any;
   deviceList: any[] = [];
   selectedDevice: any;
-  constrains: any;
   
   constructor(private toastService: ToastService) {
   
@@ -35,11 +34,10 @@ export class CameraPage {
   }
   
   onChoseDevice(selectedValue: any): void {
-    console.log(selectedValue);
     let constraints = {
       audio: false,
       video: {
-        facingMode: selectedValue
+        facingMode: selectedValue //"environment" for back; "user" for front
       }
     };
     this.initCamera(constraints);
