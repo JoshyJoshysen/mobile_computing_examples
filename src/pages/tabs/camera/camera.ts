@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
+import {ToastService} from "../../../providers/toast-service/toast-service";
 
 @IonicPage()
 @Component({
@@ -11,18 +12,18 @@ export class CameraPage {
   video: any;
   deviceList: any[] = [];
   selectedDevice: any;
+  constrains: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toastService: ToastService) {
   
   }
   
   ionViewDidLoad(): void {
-    this.findDevices();
-    
     this.video = this.videoElement.nativeElement;
+    this.selectDevices();
   }
   
-  findDevices(): void {
+  selectDevices(): void {
     navigator.mediaDevices.enumerateDevices()
       .then( (devices) => {
         devices.forEach((device)  => {
@@ -34,24 +35,31 @@ export class CameraPage {
   }
   
   onChoseDevice(selectedValue: any): void {
+    console.log(selectedValue);
     let constraints = {
       audio: false,
       video: {
-        width: 182,
-        height: 320,
-        deviceId: { exact: selectedValue.deviceId }
+        facingMode: selectedValue
       }
     };
     this.initCamera(constraints);
   }
   
   initCamera(config:any): void {
-    navigator.mediaDevices.getUserMedia(config).then(stream => {
-      this.video.srcObject = stream;
-      this.video.play();
-    }).catch((err) => {
-      console.error(err);
-    });
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia(config).then(stream => {
+        this.video.srcObject = stream;
+        stream.getTracks().forEach(function(track) {
+          console.log(track.getSettings());
+        });
+        this.video.play();
+      }).catch((err) => {
+        this.toastService.presentToast(err);
+        console.error(err);
+      });
+    } else {
+      this.toastService.presentToast("getUserMedia not supported");
+    }
   }
 
 }

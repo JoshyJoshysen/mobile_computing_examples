@@ -1,3 +1,14 @@
 page-camera {
-
+  .camera__element {
+    height: auto;
+    left: 50%;
+    min-height: 30%;
+    min-width: 30%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: auto;
+    z-index: 1;
+  }
 }

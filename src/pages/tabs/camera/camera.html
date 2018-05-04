@@ -9,8 +9,9 @@
   <ion-item>
     <ion-label>Select Device: </ion-label>
     <ion-select [(ngModel)]="selectedDevice" (ionChange)="onChoseDevice($event)">
-      <ion-option *ngFor="let dev of deviceList" [value]="dev">{{dev.label}}</ion-option>
+      <ion-option [value]="'environment'">Back Camera</ion-option>
+      <ion-option [value]="'user'">Front Camera</ion-option>
     </ion-select>
   </ion-item>
-  <video #videoElement playsinline webkit-playsinline></video>
+  <video #videoElement playsinline autoplay></video>
 </ion-content>
