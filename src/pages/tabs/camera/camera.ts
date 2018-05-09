@@ -47,9 +47,6 @@ export class CameraPage {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia(config).then(stream => {
         this.video.srcObject = stream;
-        stream.getTracks().forEach(function(track) {
-          console.log(track.getSettings());
-        });
         this.video.play();
       }).catch((err) => {
         this.toastService.presentToast(err);
