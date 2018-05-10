@@ -27,5 +27,10 @@ export class RegisterModalPage {
       console.error(err);
     });
   }
+  
+  cancel(): void {
+    let data = { 'event': 'cancel' };
+    this.viewCtrl.dismiss(data);
+  }
 
 }

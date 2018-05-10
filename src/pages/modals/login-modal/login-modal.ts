@@ -35,5 +35,10 @@ export class LoginModalPage {
     let data = { 'event': 'register' };
     this.viewCtrl.dismiss(data);
   }
+  
+  cancel(): void {
+    let data = { 'event': 'cancel' };
+    this.viewCtrl.dismiss(data);
+  }
 
 }

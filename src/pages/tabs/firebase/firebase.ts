@@ -25,15 +25,21 @@ export class FirebasePage {
       if (data.event === "register"){
         let registerModal = this.modalCtrl.create('RegisterModalPage');
         registerModal.present();
+      } else if (data.event === "cancel"){
+        this.goToTab(0);
       }
     });
   }
   
   logout(){
     this.authService.logout().then(()=>{
-      let tabs: Tabs = this.navCtrl.parent;
-      tabs.select(0);
+      this.goToTab(0);
     });
+  }
+  
+  private goToTab(index: number){
+    let tabs: Tabs = this.navCtrl.parent;
+    tabs.select(index);
   }
 
 }
