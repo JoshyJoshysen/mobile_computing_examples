@@ -19,7 +19,7 @@ To enable iPhone support, change the file `node_modules/jsartoolkit5/js/artoolki
   }
 ```
 
-To enable camera chosing, the file `node_modules/jsartoolkit5/js/artoolkit.three..d.ts` needs to be adjusted as follows:
+To enable camera chosing, the file `node_modules/jsartoolkit5/js/artoolkit.three.d.ts` needs to be adjusted as follows:
 ```javascript
 declare class GetUserMediaThreeSceneConfig {
   width?: number; height?: number;
