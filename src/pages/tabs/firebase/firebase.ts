@@ -22,12 +22,7 @@ export class FirebasePage {
   
   ionViewWillEnter() {
     if (!this.authService.authenticated){
-      //this.presentLoginModal();
-      
-      const user: UserInterface = {email: "test@test.com", password: "Password"};
-      this.authService.login(user).then((res) => {
-        //console.log(res);
-      });
+      this.presentLoginModal();
     }
   }
   

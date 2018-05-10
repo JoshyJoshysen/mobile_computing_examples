@@ -5,8 +5,8 @@ import { MyApp } from './app.component';
 import { ToastService } from '../providers/toast-service/toast-service';
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireAuthModule } from "angularfire2/auth";
-import { AuthService } from '../providers/auth-service/auth-service';
 import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AuthService } from '../providers/auth-service/auth-service';
 import { DatabaseService } from '../providers/database-service/database-service';
 
 export const FIREBASE_CONFIG = {
