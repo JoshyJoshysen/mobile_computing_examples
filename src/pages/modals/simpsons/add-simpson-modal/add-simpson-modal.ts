@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, ViewController} from 'ionic-angular';
 import {SimpsonInterface} from "../../../../interfaces/simpson.interface";
-import {DatabaseService} from "../../../../providers/database-service/database-service";
 
 @IonicPage()
 @Component({
@@ -11,7 +10,7 @@ import {DatabaseService} from "../../../../providers/database-service/database-s
 export class AddSimpsonModalPage {
   simpson = {} as SimpsonInterface;
   
-  constructor(private viewCtrl: ViewController, private dbService: DatabaseService) {
+  constructor(private viewCtrl: ViewController) {
   
   }
   

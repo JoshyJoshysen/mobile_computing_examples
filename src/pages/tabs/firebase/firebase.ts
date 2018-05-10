@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, ModalController, NavController, Tabs } from 'ionic-angular';
 import { AuthService } from "../../../providers/auth-service/auth-service";
-import { UserInterface } from "../../../interfaces/user.interface";
 import { DatabaseService } from "../../../providers/database-service/database-service";
 
 @IonicPage()
