@@ -43,11 +43,11 @@ export class FirebasePage {
   }
   
   presentLoginModal() {
-    let loginModal = this.modalCtrl.create('LoginModalPage');
+    let loginModal = this.modalCtrl.create('LoginModalPage',{}, { enableBackdropDismiss: false });
     loginModal.present();
     loginModal.onDidDismiss((data) => {
       if (data.event === "register"){
-        let registerModal = this.modalCtrl.create('RegisterModalPage');
+        let registerModal = this.modalCtrl.create('RegisterModalPage', {}, { enableBackdropDismiss: false });
         registerModal.present();
       } else if (data.event === "cancel"){
         this.goToTab(0);
@@ -72,7 +72,7 @@ export class FirebasePage {
   }
   
   updateSimpson(simpson){
-    let updateSimpsonModal = this.modalCtrl.create('UpdateSimpsonModalPage', {simpson: simpson});
+    let updateSimpsonModal = this.modalCtrl.create('UpdateSimpsonModalPage', {simpson: simpson}, { enableBackdropDismiss: false });
     updateSimpsonModal.present();
     updateSimpsonModal.onDidDismiss((data) => {
       if (data.simpson.key){
@@ -86,7 +86,7 @@ export class FirebasePage {
   }
   
   openAddSimpsonModal(){
-    let addSimpsonModal = this.modalCtrl.create('AddSimpsonModalPage');
+    let addSimpsonModal = this.modalCtrl.create('AddSimpsonModalPage',{}, { enableBackdropDismiss: false });
     addSimpsonModal.present();
     addSimpsonModal.onDidDismiss((data) => {
       if (data.simpson){
