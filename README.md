@@ -25,7 +25,7 @@ declare class GetUserMediaThreeSceneConfig {
   width?: number; height?: number;
   maxARVideoSize?: number;
   cameraConfig?: CameraDeviceConfig;
-  facingMode?: string | { exact: string };
+  facingMode?: string;
   cameraParam: string | ARCameraParam;
   onSuccess: GetUserMediaThreeSceneConfigSuccessHandler;
 }
