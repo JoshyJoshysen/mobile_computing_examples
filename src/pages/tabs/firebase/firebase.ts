@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FirebasePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {IonicPage, ModalController, NavController, Tabs} from 'ionic-angular';
+import {AuthService} from "../../../providers/auth-service/auth-service";
 
 @IonicPage()
 @Component({
@@ -15,11 +9,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FirebasePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private modalCtrl: ModalController, private authService: AuthService, private navCtrl: NavController) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FirebasePage');
+  
+  ionViewWillEnter() {
+    if (!this.authService.authenticated){
+      this.presentLoginModal();
+    }
+  }
+  
+  presentLoginModal() {
+    let loginModal = this.modalCtrl.create('LoginModalPage');
+    loginModal.present();
+    loginModal.onDidDismiss((data) => {
+      if (data.event === "register"){
+        let registerModal = this.modalCtrl.create('RegisterModalPage');
+        registerModal.present();
+      }
+    });
+  }
+  
+  logout(){
+    this.authService.logout().then(()=>{
+      let tabs: Tabs = this.navCtrl.parent;
+      tabs.select(0);
+    });
   }
 
 }

@@ -17,7 +17,7 @@ export class CameraPage {
   
   }
   
-  ionViewDidLoad(): void {
+  ionViewWillEnter(): void {
     this.video = this.videoElement.nativeElement;
     this.selectDevices();
   }
