@@ -1,8 +1,18 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Content, IonicPage} from 'ionic-angular';
 
-import { DoubleSide, WebGLRenderer, Mesh, MeshNormalMaterial, BoxGeometry, IcosahedronGeometry, MeshBasicMaterial, PlaneGeometry, FlatShading} from 'three';
-import { ARController, ARThreeScene, artoolkit } from 'jsartoolkit5';
+import {
+  DoubleSide,
+  WebGLRenderer,
+  Mesh,
+  MeshNormalMaterial,
+  BoxGeometry,
+  IcosahedronGeometry,
+  MeshBasicMaterial,
+  PlaneGeometry,
+  FlatShading
+} from 'three';
+import {ARController, ARThreeScene, artoolkit} from 'jsartoolkit5';
 
 @IonicPage()
 @Component({
@@ -31,46 +41,44 @@ export class ArPage {
     this.height = this.content.contentHeight;
     this.width = this.content.contentWidth;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      ARController.getUserMediaThreeScene(
-        {
-          maxARVideoSize: 640,
-          facingMode: 'environment',
-          cameraParam: 'assets/data/camera_para.dat',
-          onSuccess: (arScene: ARThreeScene, arController, arCamera) => {
-            arController.setPatternDetectionMode(artoolkit.AR_TEMPLATE_MATCHING_MONO_AND_MATRIX);
-  
-            let renderer = new WebGLRenderer({
-              antialias: true,
-              alpha: true,
-              canvas: this.canvas
-            });
-  
-            this.renderer = renderer;
-  
-            if (arController.orientation === 'portrait') {
-              renderer.setSize(this.height, this.width);
-              renderer.domElement.style.transformOrigin = '0 0';
-              renderer.domElement.style.transform = 'rotate(-90deg) translateX(-100%)';
-            } else {
-              renderer.setSize(this.width, this.height);
-            }
-            
-            
-
-            const cube = this.createCube();
-            const icosahedron = this.createIcosahedron();
-            const plane = this.createPlane();
-            this.trackMarker(arScene, arController, 5, plane);
-            this.trackMarker(arScene, arController, 20, icosahedron);
-            
-            let tick = () => {
-              arScene.process();
-              arScene.renderOn(renderer);
-              requestAnimationFrame(tick);
-            };
-            tick();
+      ARController.getUserMediaThreeScene({
+        maxARVideoSize: 640,
+        facingMode: 'environment', //'user' for front camera 'environment' for back
+        cameraParam: 'assets/data/camera_para.dat',
+        onSuccess: (arScene: ARThreeScene, arController, arCamera) => {
+          arController.setPatternDetectionMode(artoolkit.AR_TEMPLATE_MATCHING_MONO_AND_MATRIX);
+          
+          let renderer = new WebGLRenderer({
+            antialias: true,
+            alpha: true,
+            canvas: this.canvas
+          });
+          
+          this.renderer = renderer;
+          
+          if (arController.orientation === 'portrait') {
+            renderer.setSize(this.height, this.width);
+            renderer.domElement.style.transformOrigin = '0 0';
+            renderer.domElement.style.transform = 'rotate(-90deg) translateX(-100%)';
+          } else {
+            renderer.setSize(this.width, this.height);
           }
-        });
+          
+          
+          const cube = this.createCube();
+          const icosahedron = this.createIcosahedron();
+          const plane = this.createPlane();
+          this.trackMarker(arScene, arController, 5, plane);
+          this.trackMarker(arScene, arController, 20, icosahedron);
+          
+          let tick = () => {
+            arScene.process();
+            arScene.renderOn(renderer);
+            requestAnimationFrame(tick);
+          };
+          tick();
+        }
+      });
     }
   }
   
@@ -88,7 +96,6 @@ export class ArPage {
     
     plane.material.shading = FlatShading;
     plane.position.z = 0.5;
-    plane.text = "this is a text";
     return plane;
   }
   
@@ -117,8 +124,8 @@ export class ArPage {
     console.log('resized! ', e);
     this.width = this.content.contentWidth;
     this.height = this.content.contentHeight;
-    console.log("height",this.content.contentHeight);
-    console.log("width",this.content.contentWidth);
+    console.log("height", this.content.contentHeight);
+    console.log("width", this.content.contentWidth);
     this.renderer.setSize(this.width, this.height);
   }
 }
