@@ -6,6 +6,8 @@ import { ToastService } from '../providers/toast-service/toast-service';
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AuthService } from '../providers/auth-service/auth-service';
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { DatabaseService } from '../providers/database-service/database-service';
 
 export const FIREBASE_CONFIG = {
   apiKey: "AIzaSyBeSPk_JRJdkteFrzpkOx0otjgGtVELQQY",
@@ -24,7 +26,8 @@ export const FIREBASE_CONFIG = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,7 +36,8 @@ export const FIREBASE_CONFIG = {
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ToastService,
-    AuthService
+    AuthService,
+    DatabaseService
   ]
 })
 export class AppModule {}

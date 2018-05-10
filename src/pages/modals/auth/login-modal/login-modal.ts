@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, ViewController} from 'ionic-angular';
-import { UserInterface } from "../../../interfaces/user.interface";
-import { AuthService } from "../../../providers/auth-service/auth-service";
+import { UserInterface } from "../../../../interfaces/user.interface";
+import { AuthService } from "../../../../providers/auth-service/auth-service";
 
 @IonicPage()
 @Component({

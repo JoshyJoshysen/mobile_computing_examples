@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>AddSimpsonModal</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="cancel()">Cancel</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label floating>First Name</ion-label>
+    <ion-input type="text" [(ngModel)]="simpson.firstName" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Last Name</ion-label>
+    <ion-input type="text" [(ngModel)]="simpson.lastName" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-textarea placeholder="Enter a description" [(ngModel)]="simpson.description"></ion-textarea>
+  </ion-item>
+  <button ion-button block color="secondary" (click)="addSimpson(simpson)">Add Simpson</button>
+</ion-content>

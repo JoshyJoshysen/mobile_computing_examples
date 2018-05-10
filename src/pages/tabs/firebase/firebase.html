@@ -7,6 +7,34 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list>
+    <ion-item-divider color="light">
+      Simpsons
+      <button ion-button clear item-end (click)="openAddSimpsonModal()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-item-divider>
+    <ion-item-sliding *ngFor="let simpson of simpsons">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="simpson.avatar">
+        </ion-avatar>
+        <h2>{{ simpson.firstName }} {{ simpson.lastName }}</h2>
+        <p>{{ simpson.description }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="updateSimpson(simpson)">
+          <ion-icon name="refresh"></ion-icon>
+          Update
+        </button>
+        <button ion-button color="danger" (click)="removeSimpson(simpson)">
+          <ion-icon name="trash"></ion-icon>
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>
