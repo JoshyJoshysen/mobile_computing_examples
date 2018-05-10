@@ -9,6 +9,7 @@ import { DatabaseService } from "../../../providers/database-service/database-se
   templateUrl: 'firebase.html',
 })
 export class FirebasePage {
+  simpsonsSubsciption: any;
   simpsons: any;
 
   constructor(private modalCtrl: ModalController,
@@ -30,7 +31,7 @@ export class FirebasePage {
   private getAllSimpsons(){
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.dbService.getSimpsons().snapshotChanges().map(changes => {
+    this.simpsonsSubsciption = this.dbService.getSimpsons().snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     }).subscribe(simpsons => {
       this.simpsons = simpsons;
@@ -58,9 +59,11 @@ export class FirebasePage {
   }
   
   logout(){
-    this.authService.logout().then(()=>{
+    this.authService.logout().then(() => {
+      this.simpsonsSubsciption.unsubscribe();
       this.goToTab(0);
     });
+    
   }
   
   removeSimpson(simpson){
