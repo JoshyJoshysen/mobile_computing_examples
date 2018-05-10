@@ -16,12 +16,14 @@ export class FirebasePage {
               private dbService: DatabaseService,
               private navCtrl: NavController,
               private loadingCtrl: LoadingController) {
-    this.getAllSimpsons();
   }
   
   ionViewWillEnter() {
+    console.log("willEnter");
     if (!this.authService.authenticated){
       this.presentLoginModal();
+    } else {
+      this.getAllSimpsons();
     }
   }
   
@@ -49,6 +51,8 @@ export class FirebasePage {
         registerModal.present();
       } else if (data.event === "cancel"){
         this.goToTab(0);
+      } else {
+        this.getAllSimpsons();
       }
     });
   }
