@@ -11,6 +11,7 @@ export class TabsPage {
   tab2Root = 'WatchPage';
   tab3Root = 'CameraPage';
   tab4Root = 'ArPage';
+  tab5Root = 'FirebasePage';
 
   constructor() {
 
