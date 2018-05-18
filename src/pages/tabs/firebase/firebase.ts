@@ -33,8 +33,8 @@ export class FirebasePage {
     loading.present();
     this.simpsonsSubsciption = this.dbService.getSimpsons().snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    }).subscribe(simpsons => {
-      this.simpsons = simpsons;
+    }).subscribe((s) => {
+      this.simpsons = s;
       loading.dismiss();
     });
   }

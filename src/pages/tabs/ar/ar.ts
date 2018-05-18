@@ -1,6 +1,8 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Content, IonicPage} from 'ionic-angular';
 
+import {ARController, ARThreeScene, artoolkit} from 'jsartoolkit5';
+
 import {
   DoubleSide,
   WebGLRenderer,
@@ -12,7 +14,7 @@ import {
   PlaneGeometry,
   FlatShading
 } from 'three';
-import {ARController, ARThreeScene, artoolkit} from 'jsartoolkit5';
+
 
 @IonicPage()
 @Component({
@@ -90,7 +92,7 @@ export class ArPage {
   
   private createPlane(): Mesh {
     let plane = new Mesh(
-      new PlaneGeometry(10, 1, 1),
+      new PlaneGeometry(4, 1, 1),
       new MeshBasicMaterial({color: 0x81D8D0, side: DoubleSide})
     );
     
