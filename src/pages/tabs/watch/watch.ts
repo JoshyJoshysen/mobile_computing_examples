@@ -47,6 +47,7 @@ export class WatchPage {
       this.loading.present().then(() => {
         if (navigator && navigator.geolocation){
           this.watchProcess = navigator.geolocation.watchPosition((position) => {
+            //if position is close to desiredlocation do XY
             this.setPosition(position);
             this.addMarker(position);
             this.loading.dismiss();
