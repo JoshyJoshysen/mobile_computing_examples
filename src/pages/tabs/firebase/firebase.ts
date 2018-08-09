@@ -9,6 +9,7 @@ import { DatabaseService } from "../../../providers/database-service/database-se
   templateUrl: 'firebase.html',
 })
 export class FirebasePage {
+  simpsonsSubsciption: any;
   simpsons: any;
 
   constructor(private modalCtrl: ModalController,
@@ -30,10 +31,10 @@ export class FirebasePage {
   private getAllSimpsons(){
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.dbService.getSimpsons().snapshotChanges().map(changes => {
+    this.simpsonsSubsciption = this.dbService.getSimpsons().snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    }).subscribe(simpsons => {
-      this.simpsons = simpsons;
+    }).subscribe((s) => {
+      this.simpsons = s;
       loading.dismiss();
     });
   }
@@ -43,11 +44,11 @@ export class FirebasePage {
   }
   
   presentLoginModal() {
-    let loginModal = this.modalCtrl.create('LoginModalPage');
+    let loginModal = this.modalCtrl.create('LoginModalPage',{}, { enableBackdropDismiss: false });
     loginModal.present();
     loginModal.onDidDismiss((data) => {
       if (data.event === "register"){
-        let registerModal = this.modalCtrl.create('RegisterModalPage');
+        let registerModal = this.modalCtrl.create('RegisterModalPage', {}, { enableBackdropDismiss: false });
         registerModal.present();
       } else if (data.event === "cancel"){
         this.goToTab(0);
@@ -58,9 +59,11 @@ export class FirebasePage {
   }
   
   logout(){
-    this.authService.logout().then(()=>{
+    this.authService.logout().then(() => {
+      this.simpsonsSubsciption.unsubscribe();
       this.goToTab(0);
     });
+    
   }
   
   removeSimpson(simpson){
@@ -72,7 +75,7 @@ export class FirebasePage {
   }
   
   updateSimpson(simpson){
-    let updateSimpsonModal = this.modalCtrl.create('UpdateSimpsonModalPage', {simpson: simpson});
+    let updateSimpsonModal = this.modalCtrl.create('UpdateSimpsonModalPage', {simpson: simpson}, { enableBackdropDismiss: false });
     updateSimpsonModal.present();
     updateSimpsonModal.onDidDismiss((data) => {
       if (data.simpson.key){
@@ -86,7 +89,7 @@ export class FirebasePage {
   }
   
   openAddSimpsonModal(){
-    let addSimpsonModal = this.modalCtrl.create('AddSimpsonModalPage');
+    let addSimpsonModal = this.modalCtrl.create('AddSimpsonModalPage',{}, { enableBackdropDismiss: false });
     addSimpsonModal.present();
     addSimpsonModal.onDidDismiss((data) => {
       if (data.simpson){
