@@ -46,8 +46,10 @@ if ( !false ) {
 To get results with the AR scanner, the following marker can be scanned:
 
 [Marker no. 5](https://github.com/artoolkit/artoolkit5/blob/master/doc/patterns/Matrix%20code%203x3%20(72dpi)/5.png)
+
 ![Marker no. 5](https://github.com/artoolkit/artoolkit5/blob/master/doc/patterns/Matrix%20code%203x3%20(72dpi)/5.png "Marker no. 5")
 
 and
 [Marker no. 20](https://github.com/artoolkit/artoolkit5/blob/master/doc/patterns/Matrix%20code%203x3%20(72dpi)/20.png)
+
 ![Marker no. 20](https://github.com/artoolkit/artoolkit5/blob/master/doc/patterns/Matrix%20code%203x3%20(72dpi)/20.png "Marker no. 20")
